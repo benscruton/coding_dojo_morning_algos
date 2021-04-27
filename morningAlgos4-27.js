@@ -46,9 +46,9 @@ class Trie{
 
     autocomplete(str){
         const results = [];
+    
         // Recursive helper function; doesn't get called quite yet
         const helper = (node) => {
-            let counter = 0;
             if(node.count > 0){
                 results.push(node);
             }
@@ -58,16 +58,16 @@ class Trie{
             }
             return results;
         }
-
+    
         // follow the trail from the string we receive and save that node
         let runner = this.root;
         for(let i=0; i<str.length; i++){
             runner = runner?.children[ runner.value + str[i] ];
         }
-
+    
         helper(runner);
         
-        return results.sort((a, b) => a.count > b.count ? -1 : 1).map(r => r.value);     
+        return results.sort((a, b) => a.count > b.count ? -1 : 1).map(r => r.value);   
     }
 }
 
